@@ -65,5 +65,24 @@ function fiveDay(lat, lon) {
     $("#citySummary").append(uvi);
 
     //5 days data will be render from here
+    for (i = 1; i < 6; i++) {
+      var fiveDate = response5Day.daily[1].dt + moment().format("MM/DD/YYYY");
+
+      var fiveIcon = $("<p>").append(
+        '<img src="http://openweathermap.org/img/wn/' +
+          response5Day.daily[1].weather[0].icon +
+          '.png" />'
+      );
+
+      var fiveTemp = $("<p>").text(
+        "Temp: " + response5Day.daily[1].temp.day + " °F"
+      );
+
+      var fiveHumidity = $("<p>").text(
+        "Humidity: " + response5Day.daily[1].humidity + "%"
+      );
+
+      $("#fiveDaySum").append(fiveDate, fiveIcon, fiveTemp, fiveHumidity);
+    }
   });
 }
