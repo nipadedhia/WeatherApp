@@ -18,6 +18,12 @@ $.ajax({
   console.log(response);
 
   var cityName = $("<h3><strong>").text(response.list[0].name);
+  $(cityName).append(
+    '<img src="http://openweathermap.org/img/wn/' +
+      response.list[0].weather[0].icon +
+      '.png" />'
+  );
+
   var temp = $("<br><p>").text("Temperature: " + response.list[0].main.temp);
   var humidity = $("<p>").text("Humidity: " + response.list[0].main.humidity);
   var windSpeed = $("<p>").text("Wind Speed: " + response.list[0].wind.speed);
@@ -42,7 +48,7 @@ function fiveDay(lat, lon) {
     url: queryURL5Day,
     method: "GET",
   }).then(function (response5Day) {
-    console.log(response5Day.current.uvi);
+    console.log(response5Day);
     var uvi = $("<p>").text("UVI: " + response5Day.current.uvi);
     $("#citySummary").append(uvi);
 
