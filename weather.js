@@ -65,23 +65,25 @@ function fiveDay(lat, lon) {
     $("#citySummary").append(uvi);
 
     //5 days data will be render from here
+    //for loop to display data for 5 days
     for (i = 1; i < 6; i++) {
-      var fiveDate = response5Day.daily[1].dt + moment().format("MM/DD/YYYY");
-
+      //declared var for date and converting unix format to mm/dd/yy
+      var fiveDate = moment.unix(response5Day.daily[i].dt).format("MM/DD/YYYY");
+      //declared var for weather icon
       var fiveIcon = $("<p>").append(
         '<img src="http://openweathermap.org/img/wn/' +
-          response5Day.daily[1].weather[0].icon +
+          response5Day.daily[i].weather[0].icon +
           '.png" />'
       );
-
+      //declared var for temperature
       var fiveTemp = $("<p>").text(
-        "Temp: " + response5Day.daily[1].temp.day + " °F"
+        "Temp: " + response5Day.daily[i].temp.day + " °F"
       );
-
+      //declared var for humidity
       var fiveHumidity = $("<p>").text(
-        "Humidity: " + response5Day.daily[1].humidity + "%"
+        "Humidity: " + response5Day.daily[i].humidity + "%"
       );
-
+      //display using .append five day data
       $("#fiveDaySum").append(fiveDate, fiveIcon, fiveTemp, fiveHumidity);
     }
   });
