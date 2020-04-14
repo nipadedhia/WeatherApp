@@ -34,16 +34,20 @@
         <div class="container-fluid">
             <div class="row">
 
-                <div class="col-md-3">
+                <nav class="col-md-2">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                        <input type="text" id ="cityEnter" class="form-control" placeholder="Search">
+                        <button class="btn btn-primary" id= "submitCity" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
-                </div>
+                    <br>
+                    <div id="citySearch">
+                        <!-- <button type="button" class="btn btn-secondary btn-lg btn-block">City</button> -->
+                    </div>
+                </nav>
+
+
                 <div class="col-md-9">
                     <div class="card" style="Width:100%">
                         <div class="card-body">
@@ -59,11 +63,7 @@
 
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <button type="button" class="btn btn-secondary btn-lg btn-block">City</button>
-            </div>
+
         </div>
 
     </main>
