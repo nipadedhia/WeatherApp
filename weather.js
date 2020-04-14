@@ -17,16 +17,28 @@ $.ajax({
 }).then(function (response) {
   console.log(response);
 
+  //City Name
   var cityName = $("<h3><strong>").text(response.list[0].name);
+
+  //Current Date
+  $(cityName).append(" (" + moment().format("MM/DD/YYYY") + ")");
+
+  //Image
   $(cityName).append(
     '<img src="http://openweathermap.org/img/wn/' +
       response.list[0].weather[0].icon +
       '.png" />'
   );
 
-  var temp = $("<br><p>").text("Temperature: " + response.list[0].main.temp);
-  var humidity = $("<p>").text("Humidity: " + response.list[0].main.humidity);
-  var windSpeed = $("<p>").text("Wind Speed: " + response.list[0].wind.speed);
+  var temp = $("<br><p>").text(
+    "Temperature: " + response.list[0].main.temp + " °F"
+  );
+  var humidity = $("<p>").text(
+    "Humidity: " + response.list[0].main.humidity + "%"
+  );
+  var windSpeed = $("<p>").text(
+    "Wind Speed: " + response.list[0].wind.speed + " MPH"
+  );
 
   var latitude = response.list[0].coord.lat;
   var longitude = response.list[0].coord.lon;
