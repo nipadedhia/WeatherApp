@@ -1,5 +1,8 @@
 // This is API key for Open Weather Map.
-// var APIKey = "4e468aa89195ad77b602b51a3d8f8672";
+// APIKey = "4e468aa89195ad77b602b51a3d8f8672";
+
+var citySearch;
+var newCity = [];
 
 // declared function to get city when click on Search button
 var city;
@@ -104,3 +107,9 @@ function fiveDay(lat, lon) {
     }
   });
 }
+
+$("button").on("click", function () {
+  citySearch = $(this).val();
+  localStorage.setItem(citySearch, JSON.stringify(newCity));
+  console.log(localStorage);
+});
