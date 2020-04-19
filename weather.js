@@ -11,16 +11,16 @@ if (lastCity != null) {
 
 if (localStorage.getItem("leftNav") != null) {
   navCity = JSON.parse(localStorage.getItem("leftNav"));
-  console.log("from local storage: " + navCity);
+  //console.log("from local storage: " + navCity);
 }
 
 // declared function to get city when click on Search button
 var city;
 $("#submitCity").on("click", function () {
-  city = $("#cityEnter").val();
+  city = $("#citySearchBox").val().trim();
   //calling citySummary function
   citySummary(city);
-  //console.log(city);
+  console.log(city);
 });
 
 function citySummary(city) {
