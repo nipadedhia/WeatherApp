@@ -138,15 +138,16 @@ function fiveDay(lat, lon) {
 function addNav() {
   $("#citySearch").empty();
   for (var i = 0; i < navCity.length; i++) {
-    var navItem = $("<button>").addClass("btn btn-secondary btn-md btn-block");
+    var navItem = $("<button>").addClass(
+      "btn btn-outline-secondary btn-md btn-block"
+    );
     navItem.attr("id", "navButton");
     navItem.attr("value", navCity[i]);
     navItem.text(navCity[i]);
-    $("#citySearch").append(navItem);
+    $("#citySearch").prepend(navItem);
 
     $("#navButton").on("click", function () {
       var citySearch = $(this).val();
-      // alert("hello there!");
       console.log(citySearch);
       citySummary(citySearch);
     });
