@@ -17,3 +17,6 @@ Bootstrap 4
 Moment.js
 JQuery framework
 Google font awesome
+
+![Weather Dashboard](https://user-images.githubusercontent.com/60456593/79700071-e7729300-8258-11ea-829f-3713a920bfb8.png)
+
