@@ -18,6 +18,7 @@ if (localStorage.getItem("leftNav") != null) {
 var city;
 $("#submitCity").on("click", function () {
   city = $("#cityEnter").val();
+  //calling citySummary function
   citySummary(city);
   //console.log(city);
 });
@@ -40,11 +41,15 @@ function citySummary(city) {
     lastCity = response.list[0].name;
     localStorage.setItem("lastCity", lastCity);
     //console.log(localStorage);
+    $("#citySummary").empty();
+
+    var latitude = response.list[0].coord.lat;
+    var longitude = response.list[0].coord.lon;
+    fiveDay(latitude, longitude);
 
     //if array does not include last city then add it
     if (!navCity.includes(lastCity)) {
       navCity.push(lastCity);
-      console.log("i am inside loop");
     }
 
     localStorage.setItem("leftNav", JSON.stringify(navCity));
@@ -75,11 +80,8 @@ function citySummary(city) {
       "Wind Speed: " + response.list[0].wind.speed + " MPH"
     );
 
-    var latitude = response.list[0].coord.lat;
-    var longitude = response.list[0].coord.lon;
-    fiveDay(latitude, longitude);
     console.log("lon" + response.list[0].coord.lon);
-    $("#citySummary").empty();
+
     $("#citySummary").append(cityName, temp, humidity, windSpeed);
   });
 }
@@ -97,14 +99,14 @@ function fiveDay(lat, lon) {
     method: "GET",
   }).then(function (response5Day) {
     console.log(response5Day);
+
+    $("#fiveDaySum").empty();
+
     var uvi = $("<p>").text("UVI: " + response5Day.current.uvi);
     $("#citySummary").append(uvi);
 
-    //5 days data will be render from here
-    //creating table
-
     //for loop to display data for 5 days
-    $("#fiveDaySum").empty();
+
     for (i = 1; i < 6; i++) {
       //declared var for date and converting unix format to mm/dd/yy
 
@@ -141,11 +143,12 @@ function addNav() {
     navItem.attr("value", navCity[i]);
     navItem.text(navCity[i]);
     $("#citySearch").append(navItem);
-  }
 
-  $("#navButton").on("click", function () {
-    var citySearch = $(this).val();
-    console.log(citySearch);
-    citySummary(citySearch);
-  });
+    $("#navButton").on("click", function () {
+      var citySearch = $(this).val();
+      // alert("hello there!");
+      console.log(citySearch);
+      citySummary(citySearch);
+    });
+  }
 }
