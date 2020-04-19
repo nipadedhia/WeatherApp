@@ -32,9 +32,12 @@ function citySummary(city) {
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    lastCity = response.list[0].name;
+    localStorage.setItem("lastCity", lastCity);
+    console.log(localStorage);
 
     //City Name
-    var cityName = $("<h3><strong>").text(response.list[0].name);
+    var cityName = $("<h3><strong>").text(lastCity);
 
     //Current Date
     $(cityName).append(" (" + moment().format("MM/DD/YYYY") + ")");
@@ -112,6 +115,10 @@ function fiveDay(lat, lon) {
       $("#fiveDaySum").append(fiveDate);
     }
   });
+}
+
+for (var i = 0; i < newCity.length; i++) {
+  $("#citySearch").append(newCity);
 }
 
 $("button").on("click", function () {
