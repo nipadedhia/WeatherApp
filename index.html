@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <!-- header for Weather dashboard -->
     <header>
         <div class="row">
             <div class="col-md-12">
@@ -33,45 +34,37 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-
+                <!-- Searched box for searching city -->
                 <nav class="col-md-2">
                     <div class="input-group">
-                        <form id="input-form" method="POST">
-                            <input type="text" id="citySearchBox" class="form-control" placeholder="Search City">
-                            </input>
-                        </form>
-
+                        <input type="text" id="citySearchBox" class="form-control" placeholder="Search City">
                         <button class="btn btn-primary" id="submitCity" type="button">
                             <i class="fa fa-search"></i>
-
                         </button>
-
+                        </input>
                     </div>
                     <br>
+                    <!-- this is building left nav using the previously searched city -->
                     <div id="citySearch">
-                        <!-- <button type="button" class="btn btn-secondary btn-lg btn-block">City</button> -->
                     </div>
                 </nav>
 
-
                 <div class="col-md-9">
+                    <!-- current day summary weather data -->
                     <div class="card" style="Width:100%">
                         <div class="card-body">
-
                             <div id="citySummary"> </div>
                         </div>
                     </div>
+                    <!-- 5 day weather data -->
                     <div>
                         <table>
                             <tr id="fiveDaySum"></tr>
                         </table>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </main>
 
 
