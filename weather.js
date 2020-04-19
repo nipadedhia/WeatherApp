@@ -2,11 +2,15 @@
 // APIKey = "4e468aa89195ad77b602b51a3d8f8672";
 
 var citySearch;
-var newCity = [];
+var navCity = [];
 var lastCity = localStorage.getItem("lastCity");
 
+if (localStorage.getItem("leftNav") != null) {
+  navCity = localStorage.getItem("leftNav");
+}
+
 if (lastCity != null) {
-  CitySummary(lastCity);
+  citySummary(lastCity);
 }
 
 // declared function to get city when click on Search button
@@ -35,6 +39,16 @@ function citySummary(city) {
     lastCity = response.list[0].name;
     localStorage.setItem("lastCity", lastCity);
     console.log(localStorage);
+
+    //if array does not include last city then add it
+    if (navCity.includes != lastCity) {
+      navCity.push(lastCity);
+    }
+
+    localStorage.setItem("leftNav", JSON.stringify(navCity));
+
+    //call for addNav function
+    addNav();
 
     //City Name
     var cityName = $("<h3><strong>").text(lastCity);
@@ -117,12 +131,18 @@ function fiveDay(lat, lon) {
   });
 }
 
-for (var i = 0; i < newCity.length; i++) {
-  $("#citySearch").append(newCity);
+function addNav() {
+  $("#citySearch").empty();
+  for (var i = 0; i < navCity.length; i++) {
+    var navItem = $("<button>").addClass("btn btn-secondary btn-md btn-block");
+    navItem.attr("value", "navButton");
+    navItem.text(navCity[i]);
+    $("#citySearch").append(navItem);
+  }
 }
 
 $("button").on("click", function () {
   citySearch = $(this).val();
-  localStorage.setItem(citySearch, JSON.stringify(newCity));
+
   console.log(localStorage);
 });
