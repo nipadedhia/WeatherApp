@@ -8,5 +8,18 @@ body {
 
 td {
   background-color: #3788ff;
+  color: white;
+  border-radius: 22px;
   border: 10px solid white;
+  width: 150px;
+  padding: 15px 0;
+}
+
+.searchbox {
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border: 1px solid darkgray;
+  width: 52%;
+  height: 40px;
 }
