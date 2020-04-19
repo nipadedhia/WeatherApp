@@ -23,6 +23,15 @@ $("#submitCity").on("click", function () {
   console.log(city);
 });
 
+// declared function to get city when hit enter key
+$("#input-form").on("submit", function () {
+  event.preventDefault();
+  city = $("#citySearchBox").val().trim();
+  //calling citySummary function
+  citySummary(city);
+  console.log(city);
+});
+
 function citySummary(city) {
   // Here we are building the URL we need to query the database
   var queryURL =
