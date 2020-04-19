@@ -1,16 +1,17 @@
 // This is API key for Open Weather Map.
 // APIKey = "4e468aa89195ad77b602b51a3d8f8672";
 
-var citySearch;
+// var citySearch;
 var navCity = [];
 var lastCity = localStorage.getItem("lastCity");
 
-if (localStorage.getItem("leftNav") != null) {
-  navCity = localStorage.getItem("leftNav");
-}
-
 if (lastCity != null) {
   citySummary(lastCity);
+}
+
+if (localStorage.getItem("leftNav") != null) {
+  navCity = JSON.parse(localStorage.getItem("leftNav"));
+  console.log("from local storage: " + navCity);
 }
 
 // declared function to get city when click on Search button
@@ -28,7 +29,7 @@ function citySummary(city) {
     city +
     "&units=imperial&appid=4e468aa89195ad77b602b51a3d8f8672";
   console.log(queryURL);
-  console.log(city);
+  //console.log(city);
 
   // We then created an AJAX call
   $.ajax({
@@ -38,11 +39,12 @@ function citySummary(city) {
     console.log(response);
     lastCity = response.list[0].name;
     localStorage.setItem("lastCity", lastCity);
-    console.log(localStorage);
+    //console.log(localStorage);
 
     //if array does not include last city then add it
-    if (navCity.includes != lastCity) {
+    if (!navCity.includes(lastCity)) {
       navCity.push(lastCity);
+      console.log("i am inside loop");
     }
 
     localStorage.setItem("leftNav", JSON.stringify(navCity));
@@ -135,14 +137,15 @@ function addNav() {
   $("#citySearch").empty();
   for (var i = 0; i < navCity.length; i++) {
     var navItem = $("<button>").addClass("btn btn-secondary btn-md btn-block");
-    navItem.attr("value", "navButton");
+    navItem.attr("id", "navButton");
+    navItem.attr("value", navCity[i]);
     navItem.text(navCity[i]);
     $("#citySearch").append(navItem);
   }
+
+  $("#navButton").on("click", function () {
+    var citySearch = $(this).val();
+    console.log(citySearch);
+    citySummary(citySearch);
+  });
 }
-
-$("button").on("click", function () {
-  citySearch = $(this).val();
-
-  console.log(localStorage);
-});
