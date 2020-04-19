@@ -3,6 +3,11 @@
 
 var citySearch;
 var newCity = [];
+var lastCity = localStorage.getItem("lastCity");
+
+if (lastCity != null) {
+  CitySummary(lastCity);
+}
 
 // declared function to get city when click on Search button
 var city;
@@ -55,7 +60,7 @@ function citySummary(city) {
     var longitude = response.list[0].coord.lon;
     fiveDay(latitude, longitude);
     console.log("lon" + response.list[0].coord.lon);
-
+    $("#citySummary").empty();
     $("#citySummary").append(cityName, temp, humidity, windSpeed);
   });
 }
@@ -80,6 +85,7 @@ function fiveDay(lat, lon) {
     //creating table
 
     //for loop to display data for 5 days
+    $("#fiveDaySum").empty();
     for (i = 1; i < 6; i++) {
       //declared var for date and converting unix format to mm/dd/yy
 
